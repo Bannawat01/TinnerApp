@@ -4,10 +4,12 @@ import { swaggerConfig } from "./configs/swagger.config"
 import { tlsConfig } from "./configs/tls.config"
 import cors from "@elysiajs/cors"
 import { MongoDB } from "./configs/database.config"
+import { jwtConfig } from "./configs/jwt.config"
 
 MongoDB.connect()
 
 const app = new Elysia()
+  .use(jwtConfig)
   .use(cors())
   .use(swaggerConfig)
   .use(example)

@@ -16,13 +16,13 @@ export const _register = t.Object({
 export const _profile = t.Object({
     ...t.Omit(_register, ['password']).properties,
     id: t.String(),
-    introducttion: t.Optional(t.String()),
+    introduction: t.Optional(t.String()),
     interest: t.Optional(t.String()),
     location: t.Optional(t.String()),
-    age: t.Optional(t.Date()),
+    age: t.Optional(t.String()),
     last_active: t.Optional(t.Date()),
-    ctrate_at: t.Optional(t.Date()),
-    update_at: t.Optional(t.Date()),
+    created_at: t.Optional(t.String()),
+    updated_at: t.Optional(t.Date()),
 
     //todo: implement update feature
     //photo: phori_id[]

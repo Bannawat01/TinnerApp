@@ -8,6 +8,13 @@ export const example = new Elysia()
             description: "eieiei"
         }
     })
+    .get("/home", () => "Wowww", {
+        detail: {
+            tags: ["example"],
+            summary: "Get Home",
+            description: "eieiei"
+        }
+    })
     .post("/about", ({ body }) => {
         return {
             id: '1',

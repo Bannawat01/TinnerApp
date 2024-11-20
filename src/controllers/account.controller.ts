@@ -2,7 +2,6 @@ import Elysia from "elysia"
 import { jwtConfig } from "../configs/jwt.config"
 import { AccountDto } from "../types/account.type"
 import { AccountService } from "../services/account.service"
-import { retrieveRootParamters } from "elysia/dist/sucrose"
 
 export const AccountController = new Elysia({
     prefix: '/api/account',

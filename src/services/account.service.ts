@@ -3,7 +3,6 @@ import { user, register, login } from "../types/account.type"
 
 export const AccountService = {
     login: async function (loginData: login): Promise<user> {
-        //todo: like photo
         const user = await User.findOne({ username: loginData.username }).exec()
         if (!user)
             throw new Error("User does not exist")

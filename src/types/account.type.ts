@@ -1,4 +1,4 @@
-import { t } from "elysia"
+import Elysia, { Static, t } from "elysia"
 
 export const _login = t.Object({
     username: t.String(),
@@ -14,5 +14,41 @@ export const _register = t.Object({
 })
 
 export const _profile = t.Object({
-    ...t.Omit(_register, ['password']).properties
+    ...t.Omit(_register, ['password']).properties,
+    id: t.String(),
+    introducttion: t.Optional(t.String()),
+    interest: t.Optional(t.String()),
+    location: t.Optional(t.String()),
+    age: t.Optional(t.Date()),
+    last_active: t.Optional(t.Date()),
+    ctrate_at: t.Optional(t.Date()),
+    update_at: t.Optional(t.Date()),
+
+    //todo: implement update feature
+    //photo: phori_id[]
 })
+
+export const _user = t.Object({
+    ..._profile.properties,
+    //todo: implement like feature
+    //follower: profile[]
+    //fpllowing: profile[]
+})
+
+export const _account = t.Object({
+    user: _user,
+    token: t.String()
+})
+
+export const AccountDto = new Elysia().model({
+    //request
+    register: _register,
+    login: _login,
+
+    //response
+    account: _account
+})
+
+export type user = Static<typeof _user>
+export type register = Static<typeof _register>
+export type login = Static<typeof _login>

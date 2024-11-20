@@ -1,7 +1,8 @@
 import mongoose from "mongoose"
 import { IUserDocument, IUserModel } from "../interfaces/user.interface"
-import { user } from "../types/account.type"
+import { register, user } from "../types/account.type"
 import { calculateAge } from "../helpers/date.helper"
+import { password } from "bun"
 
 const schema = new mongoose.Schema<IUserDocument, IUserModel>({
     username: { type: String, required: true, unique: true },
@@ -69,4 +70,18 @@ schema.methods.toUser = function (): user {
     }
 }
 
-schema.methods.verifyPassword
+schema.methods.verifyPassword = async function (password: string): Promise<boolean> {
+    return await Bun.password.verify(password, this.password_hash)
+}
+
+schema.statics.createUser = async function (registerData: register): Promise<IUserDocument> {
+    const newUser = await new this({
+        display_name: registerData.display_name,
+        username: registerData.username,
+        password_hash: await Bun.password.hash(registerData.password),
+        date_of_birth: registerData.date_of_birth,
+        looking_for: registerData.looking_for
+    })
+    await newUser.save()
+    return newUser
+}

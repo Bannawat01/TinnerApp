@@ -3,6 +3,9 @@ import { example } from "./controllers/example.controller"
 import { swaggerConfig } from "./configs/swagger.config"
 import { tlsConfig } from "./configs/tls.config"
 import cors from "@elysiajs/cors"
+import { MongoDB } from "./configs/database.config"
+
+MongoDB.connect()
 
 const app = new Elysia()
   .use(cors())

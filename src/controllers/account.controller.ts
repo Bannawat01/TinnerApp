@@ -17,7 +17,7 @@ export const AccountController = new Elysia({
             const token = await jwt.sign({ id: user.id })
             return { token, user }
         } catch (error) {
-            set.status = "Bad Request"
+            set.status = 400
             if (error instanceof Error)
                 throw new Error(error.message)
             set.status = 500

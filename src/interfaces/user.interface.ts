@@ -11,5 +11,5 @@ export interface IUserDocument extends mongoose.Document, userWithOutID {
 }
 
 export interface IUserModel extends mongoose.Model<IUserDocument> {
-    craeteUser: (registerData: register) => Promise<IUserDocument>
+    createUser: (registerData: register) => Promise<IUserDocument>
 }

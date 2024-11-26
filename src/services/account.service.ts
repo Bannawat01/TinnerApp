@@ -12,12 +12,11 @@ export const AccountService = {
         return user.toUser()
     },
 
-
     createNewUser: async function (registerData: register): Promise<user> {
         const user = await User.findOne({ username: registerData.username }).exec()
         if (user)
             throw new Error(`${registerData.username} already exists`)
-        const newUser = await User.craeteUser(registerData)
+        const newUser = await User.createUser(registerData)
         return newUser.toUser()
     }
 }

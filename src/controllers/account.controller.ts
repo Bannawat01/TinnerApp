@@ -16,6 +16,10 @@ export const AccountController = new Elysia({
             return { user, token }
         } catch (error) {
             set.status = 400 //bad request naja eiei
+            if (error instanceof Error)
+                throw new Error(error.message)
+            set.status = 500 // internal server error
+            throw new Error('Something went wrong, try again later')
         }
     }, {
         detail: { summary: "Login to your account" },

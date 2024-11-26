@@ -6,6 +6,8 @@ import cors from "@elysiajs/cors"
 import { MongoDB } from "./configs/database.config"
 import { jwtConfig } from "./configs/jwt.config"
 import { AccountController } from "./controllers/account.controller"
+import { User } from "./models/user.model"
+import { UserController } from "./controllers/user.controller"
 
 MongoDB.connect()
 
@@ -14,6 +16,7 @@ const app = new Elysia()
   .use(cors())
   .use(swaggerConfig)
   .use(AccountController)
+  .use(UserController)
   // .use(example)
 
   .listen({

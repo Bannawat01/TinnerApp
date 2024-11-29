@@ -11,7 +11,7 @@ export const _profile = t.Object({
     location: t.Optional(t.String()),
     age: t.Optional(t.String()),
     last_active: t.Optional(t.Date()),
-    created_at: t.Optional(t.String()),
+    created_at: t.Optional(t.Date()),
     updated_at: t.Optional(t.Date()),
 
 })
@@ -43,5 +43,5 @@ export const UserDto = new Elysia().model({
 
 export type updateProfile = Static<typeof _updateProfile>
 export type userPagination = Static<typeof _userPagination>
-export type userPaginator = Static<typeof _userPagination>
+export type userPaginator = Static<typeof _userPaginator>
 export type user = Static<typeof _user>

@@ -9,7 +9,7 @@ export const UserController = new Elysia({
 
     .get('/all', () => {
         return {
-            text: 'Hello World'
+            text: "Hello World"
         }
     }, {
         isSignIn: true,

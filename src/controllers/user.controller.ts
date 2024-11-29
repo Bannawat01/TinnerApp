@@ -1,11 +1,11 @@
 import Elysia from "elysia"
-import { AuthMiddleware } from "../middlewares/auth.middleware"
+import { AuthMiddleWare } from "../middlewares/auth.middleware"
 
 export const UserController = new Elysia({
     prefix: '/api/user',
     tags: ['User']
 })
-    .use(AuthMiddleware)
+    .use(AuthMiddleWare)
 
     .get('/all', () => {
         return {

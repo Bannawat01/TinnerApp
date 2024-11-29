@@ -7,7 +7,7 @@ type AuthContext = {
     }
 }
 export type AuthPlayload = { id: string }
-export const AuthMiddleware = new Elysia({ name: 'Middleware.Auth' })
+export const AuthMiddleWare = new Elysia({ name: 'Middleware.Auth' })
 
     .use(jwtConfig)
     .derive({ as: 'scoped' }, async ({ headers, jwt }): Promise<AuthContext> => {

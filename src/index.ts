@@ -8,6 +8,8 @@ import { jwtConfig } from "./configs/jwt.config"
 import { AccountController } from "./controllers/account.controller"
 import { User } from "./models/user.model"
 import { UserController } from "./controllers/user.controller"
+import staticPlugin from "@elysiajs/static"
+import { PhotoController } from "./controllers/photo.controller"
 
 MongoDB.connect()
 
@@ -18,6 +20,12 @@ const app = new Elysia()
   .use(AccountController)
   .use(UserController)
   // .use(example)
+  .use(staticPlugin({
+    assets: "./public/uploads",
+    prefix: "/img",
+  }))
+
+  .use(PhotoController)
 
   .listen({
     port: Bun.env.PORT || 8000,

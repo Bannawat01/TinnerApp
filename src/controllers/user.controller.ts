@@ -32,7 +32,8 @@ export const UserController = new Elysia({
     .patch('/', async ({ body, set, Auth }) => {
         try {
             const user_id = (Auth.payload as AuthPlayload).id //get user_id from token
-            return await UserService.updateProfile(body, (Auth.payload as AuthPlayload).id)
+            await UserService.updateProfile(body, (Auth.payload as AuthPlayload).id)
+            set.status = 204 //success
         } catch (error) {
             set.status = 400 //bad request
             if (error instanceof Error)

@@ -14,3 +14,5 @@ export const UserController = new Elysia({
     }, {
         isSignIn: true,
     })
+
+    .get('/user', () => { })

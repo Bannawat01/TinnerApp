@@ -10,7 +10,7 @@ export const UserService = {
             _id: { $nin: new mongoose.Types.ObjectId(user_id) },
             $and: QueryHelper.parseUserQuery(pagination)
         }
-        const query = User.find({ filter }).sort({ last_active: -1 }) //descendent order 🟣/ ascendent order
+        const query = User.find(filter).sort({ last_active: -1 }) //descendent order 🟣/ ascendent order
         const skip = pagination.pageSize * (pagination.currentPage - 1) //skip the first n elements
         query.skip(skip).limit(pagination.pageSize)
 

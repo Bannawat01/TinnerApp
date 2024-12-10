@@ -1,13 +1,13 @@
 import Elysia, { t } from "elysia"
 
 export const PhotoController = new Elysia({
-    prefix: "api-photo",
-    tags: ["Photo"],
+    prefix: "api/photo",
+    tags: ["Photo"]
 })
 
     .post('/', async ({ body: { imgFile } }) => {
         const filename = `${Date.now()}-${imgFile.name}`
-        const filepath = `./public/uploads/${filename}`
+        const filepath = `public/uploads${filename}`
         const buffer = await imgFile.arrayBuffer()
         await Bun.write(filepath, buffer)
 

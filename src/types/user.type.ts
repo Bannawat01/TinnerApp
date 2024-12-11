@@ -2,6 +2,7 @@ import Elysia, { t, Static } from "elysia"
 import { _register } from "./regis.type"
 import { _pagination, CreatePagteination } from "./pagination.type"
 import { update } from "lodash"
+import { _photo } from "./photo.type"
 
 export const _profile = t.Object({
     ...t.Omit(_register, ['password']).properties,
@@ -14,6 +15,7 @@ export const _profile = t.Object({
     created_at: t.Optional(t.Date()),
     updated_at: t.Optional(t.Date()),
 
+    photos: t.Optional(t.Array(_photo)),
 })
 
 

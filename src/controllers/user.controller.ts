@@ -2,6 +2,7 @@ import Elysia from "elysia"
 import { AuthMiddleWare, AuthPlayload } from "../middlewares/auth.middleware"
 import { UserDto } from "../types/user.type"
 import { UserService } from "../services/user.service"
+import { set } from "mongoose"
 
 export const UserController = new Elysia({
     prefix: '/api/user',

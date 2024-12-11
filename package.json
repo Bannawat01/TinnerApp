@@ -11,6 +11,7 @@
     "@elysiajs/static": "^1.1.1",
     "@elysiajs/swagger": "^1.1.5",
     "elysia": "latest",
+    "file-type": "^19.6.0",
     "mongoose": "^8.8.2"
   },
   "devDependencies": {

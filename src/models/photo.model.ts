@@ -6,7 +6,7 @@ const schema = new mongoose.Schema<IPhotoDocument, IPhotoModel>({
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     public_id: { type: String, required: true },
     url: { type: String, required: true },
-    is_avatar: { type: String, required: true, default: false },
+    is_avatar: { type: Boolean, required: true, default: false },
 }, {
     timestamps: { createdAt: 'created_at' }
 })

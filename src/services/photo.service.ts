@@ -60,12 +60,20 @@ export const PhotoService = {
         })
         await Photo.findByIdAndDelete(photo_id)
         await Cloudinary.uploader.destroy(doc.public_id)
-
-        throw new Error('Not implemented yet')
+        return true
     },
 
     setAvatar: async function (photo_id: string, user_id: string): Promise<boolean> {
-        throw new Error('Not implemented yet')
+        await Photo.updateMany(
+            { user: new mongoose.Types.ObjectId(user_id) }, //เอาทุกภาพของ user นี้เท่านั้น
+            { $set: { isAvatar: false } }
+        ) //เปลี่ยนทุกภาพของ user นี้เป็น false
+
+        const result = await Photo.findByIdAndUpdate(photo_id,
+            { $set: { isAvatar: true } },
+            // { new: true } //return ค่าที่เปลี่ยนแล้ว ปล.ไม่ใส่ก็ได้
+        )
+        return !!result //ถ้า result มีค่าจะ return true ถ้าไม่มีค่าจะ return false
     }
 
 }

@@ -1,13 +1,13 @@
 
 import { Static, t, TSchema } from "elysia"
 
-export const _pagination = t.Object({
+export const pagination = t.Object({
     pageSize: t.Number(),
     currentPage: t.Number(),
     length: t.Optional(t.Number()),
 })
 
-export type pagination = Static<typeof _pagination>
+export type _pagination = Static<typeof pagination>
 
 export function CreatePagteination<T extends TSchema, U extends TSchema>(itemType: T, paginationType: U) {
     return t.Object({

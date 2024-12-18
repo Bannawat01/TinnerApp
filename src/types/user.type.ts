@@ -1,7 +1,6 @@
 import Elysia, { t, Static } from "elysia"
 import { _register } from "./regis.type"
-import { _pagination, CreatePagteination } from "./pagination.type"
-import { update } from "lodash"
+import { _pagination, CreatePagteination, pagination } from "./pagination.type"
 import { _photo } from "./photo.type"
 
 export const _profile = t.Object({
@@ -21,12 +20,12 @@ export const _profile = t.Object({
 
 export const _user = t.Object({
     ..._profile.properties,
-    //follower: profile[]
-    //fpllowing: profile[]
+    followers: t.Optional(t.Array(t.Union([t.Partial(_profile), t.String()]))), //ทำให้ _profile เป็น optional ได้
+    following: t.Optional(t.Array(t.Union([t.Partial(_profile), t.String()])))
 })
 
 const _userPagination = t.Object({
-    ..._pagination.properties,
+    ...pagination.properties,
     username: t.Optional(t.String()),
     min_age: t.Optional(t.Number()),
     max_age: t.Optional(t.Number()),
@@ -41,7 +40,9 @@ export const UserDto = new Elysia().model({
     pagination: t.Optional(_userPagination),
     update_profile: _updateProfile,
     users: _userPaginator,
-    user: _user
+    user: _user,
+    target_id: t.Object({ target_id: t.String() })
+
 })
 
 export type updateProfile = Static<typeof _updateProfile>

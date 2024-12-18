@@ -63,17 +63,17 @@ export const PhotoService = {
         return true
     },
 
-    setAvatar: async function (photo_id: string, user_id: string): Promise<boolean> {
+    async setAvatar(photo_id: string, user_id: string): Promise<boolean> {
         await Photo.updateMany(
             { user: new mongoose.Types.ObjectId(user_id) }, //เอาทุกภาพของ user นี้เท่านั้น
-            { $set: { isAvatar: false } }
+            { $set: { is_avatar: false } }
         ) //เปลี่ยนทุกภาพของ user นี้เป็น false
 
-        const result = await Photo.findByIdAndUpdate(photo_id,
-            { $set: { isAvatar: true } },
-            // { new: true } //return ค่าที่เปลี่ยนแล้ว ปล.ไม่ใส่ก็ได้
+        const upDatePhoto = await Photo.findByIdAndUpdate(photo_id,
+            { $set: { is_avatar: true } },
+            { new: true } //return ค่าที่เปลี่ยนแล้ว ปล.ไม่ใส่ก็ได้
         )
-        return !!result //ถ้า result มีค่าจะ return true ถ้าไม่มีค่าจะ return false
+        return !!upDatePhoto //ถ้า result มีค่าจะ return true ถ้าไม่มีค่าจะ return false
     }
 
 }

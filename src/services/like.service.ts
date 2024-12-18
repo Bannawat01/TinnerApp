@@ -67,7 +67,7 @@ export const LikeService = {
                 { $project: { total: { $size: { $ifNull: ["following", []] } } } }
             ])
         ])
-        pagination.length = total[0].total
+        pagination.length = total[0].count
         let following: user[] = []
         if (docs) {
             following = docs.following as user[]

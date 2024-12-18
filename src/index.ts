@@ -10,7 +10,7 @@ import { User } from "./models/user.model"
 import { UserController } from "./controllers/user.controller"
 import staticPlugin from "@elysiajs/static"
 import { PhotoController } from "./controllers/photo.controller"
-import { LikeController } from "./controllers/likr.controller"
+import { LikeController } from "./controllers/like.controller"
 
 MongoDB.connect()
 

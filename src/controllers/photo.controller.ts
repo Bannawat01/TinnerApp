@@ -12,6 +12,16 @@ export const PhotoController = new Elysia({
 })
     .use(PhotoDto)
     .use(AuthMiddleWare)
+
+    .get('/', async ({ Auth }) => {
+        const user_id = (Auth.payload as AuthPlayload).id //find user_id from token
+        return await PhotoService.getPhotos(user_id)
+    }, {
+        detail: { summary: "Get photo[] by user_id" },
+        isSignIn: true,
+        response: "photos",
+    })
+
     .post('/', async ({ body: { file }, set, Auth }) => {
         console.log('muhahaha')
         const user_id = (Auth.payload as AuthPlayload).id

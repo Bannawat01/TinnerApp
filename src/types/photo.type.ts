@@ -22,3 +22,4 @@ export const PhotoDto = new Elysia().model({
     photo: _photo,
     photos: t.Array(_photo) //pagination eiei
 })
+

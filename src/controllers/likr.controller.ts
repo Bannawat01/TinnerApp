@@ -4,7 +4,7 @@ import { UserDto } from "../types/user.type"
 import { LikeService } from "../services/like.service"
 
 export const LikeController = new Elysia({
-    prefix: "api/photo",
+    prefix: "api/like",
     tags: ["Photo"]
 })
 

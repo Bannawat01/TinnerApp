@@ -5,7 +5,7 @@ import { LikeService } from "../services/like.service"
 
 export const LikeController = new Elysia({
     prefix: "api/like",
-    tags: ["Photo"]
+    tags: ["Like"]
 })
 
     .use(AuthMiddleWare)

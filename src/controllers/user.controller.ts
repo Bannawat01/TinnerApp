@@ -1,4 +1,4 @@
-import Elysia from "elysia"
+import Elysia, { t } from "elysia"
 import { AuthMiddleWare, AuthPlayload } from "../middlewares/auth.middleware"
 import { UserDto } from "../types/user.type"
 import { UserService } from "../services/user.service"
@@ -18,6 +18,17 @@ export const UserController = new Elysia({
                 { id: '2', name: 'Steve Minecraft' },
             ]
         }
+    })
+
+    .get('/username', ({ params: { username } }) => {
+        return UserService.getByUserName(username)
+    }, {
+        detail: { summary: 'Get user by username' },
+        // query: t.Object({
+        //     username: t.String()
+        // }),
+        response: "user",
+        isSignIn: true,
     })
 
     .get('/', ({ query, Auth }) => {

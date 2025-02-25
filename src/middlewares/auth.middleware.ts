@@ -6,7 +6,7 @@ type AuthContext = {
         payload: false | (Record<string, string | number> & JWTPayloadSpec)
     }
 }
-export type AuthPlayload = { id: string }
+export type AuthPayload = { id: string }
 export const AuthMiddleWare = new Elysia({ name: 'Middleware.Auth' })
 
     .use(jwtConfig)

@@ -1,7 +1,7 @@
 import Elysia, { error, t } from "elysia"
 import { ImageHelper } from "../helpers/image.helper"
 import { PhotoDto } from "../types/photo.type"
-import { AuthMiddleWare, AuthPlayload } from "../middlewares/auth.middleware"
+import { AuthMiddleWare, AuthPayload } from "../middlewares/auth.middleware"
 import { PhotoService } from "../services/photo.service"
 
 // const _imageDB: { id: string, data: string, type: string }[] = []
@@ -15,7 +15,7 @@ export const PhotoController = new Elysia({
 
     .patch('/:photo_id', async ({ params: { photo_id }, set, Auth }) => {
         try {
-            const user_id = (Auth.payload as AuthPlayload).id
+            const user_id = (Auth.payload as AuthPayload).id
             await PhotoService.setAvatar(photo_id, user_id)
             set.status = "No Content"
         } catch (error) {
@@ -49,7 +49,7 @@ export const PhotoController = new Elysia({
     })
 
     .get('/', async ({ Auth }) => {
-        const user_id = (Auth.payload as AuthPlayload).id //find user_id from token
+        const user_id = (Auth.payload as AuthPayload).id //find user_id from token
         return await PhotoService.getPhotos(user_id)
     }, {
         detail: { summary: "Get photo[] by user_id" },
@@ -59,7 +59,7 @@ export const PhotoController = new Elysia({
 
     .post('/', async ({ body: { file }, set, Auth }) => {
         console.log('muhahaha')
-        const user_id = (Auth.payload as AuthPlayload).id
+        const user_id = (Auth.payload as AuthPayload).id
         try {
             return await PhotoService.upload(file, user_id)
         } catch (error) {

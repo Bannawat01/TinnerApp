@@ -1,5 +1,5 @@
 import Elysia from "elysia"
-import { AuthMiddleWare, AuthPlayload } from "../middlewares/auth.middleware"
+import { AuthMiddleWare, AuthPayload } from "../middlewares/auth.middleware"
 import { UserDto } from "../types/user.type"
 import { LikeService } from "../services/like.service"
 
@@ -13,7 +13,7 @@ export const LikeController = new Elysia({
 
     .put('/', async ({ body: { target_id }, set, Auth }) => {
         try {
-            const user_id = (Auth.payload as AuthPlayload).id
+            const user_id = (Auth.payload as AuthPayload).id
             await LikeService.toggleLike(user_id, target_id)
             set.status = "No Content"
         } catch (error) {
@@ -26,8 +26,9 @@ export const LikeController = new Elysia({
         body: "target_id",
     })
 
+    //todo: get following
     .get('/followers', async ({ Auth, query }) => {
-        const user_id = (Auth.payload as AuthPlayload).id
+        const user_id = (Auth.payload as AuthPayload).id
         const user_pagination = await LikeService.getFollowers(user_id, query)
         return user_pagination
     }, {
@@ -37,7 +38,7 @@ export const LikeController = new Elysia({
         response: "users"
     })
     .get('/following', async ({ Auth, query }) => {
-        const user_id = (Auth.payload as AuthPlayload).id
+        const user_id = (Auth.payload as AuthPayload).id
         const user_pagination = await LikeService.getFollowing(user_id, query)
         return user_pagination
     }, {
